@@ -28,7 +28,8 @@ assets/
   css/style.css         Styles, light/dark themes via CSS variables
   js/main.js            Language + theme toggles, nav highlight, optional CV/photo detection
   favicon.svg           Placeholder favicon ("SY")
-  fonts/                Self-hosted Newsreader (headings) and Inter (text), SIL OFL — see LICENSE.txt
+  fonts/                Self-hosted Newsreader + Inter (Latin) and Noto Serif/Sans SC subsets (Chinese), SIL OFL — see LICENSE.txt
+scripts/subset-cjk-fonts.py  Rebuilds the Chinese font subsets from the characters used in index.html
   img/                  Put project images here
   cv.pdf                (you add) CV — button appears automatically
   profile.jpg           (you add) profile photo — appears automatically in the hero
@@ -70,6 +71,15 @@ the hero. Until then no photo is shown.
 
 > While `cv.pdf` / `profile.jpg` do not exist, the browser console shows two harmless 404 lines
 > from the detection check. They disappear once both files are added.
+
+### Chinese fonts
+The Chinese fonts (Noto Serif SC / Noto Sans SC) are subsets that contain only the characters currently
+used on the page (about 230). If you add new Chinese text, characters missing from the subset simply fall
+back to the system font. To include them, run once (needs Python, Node/npm and `pip install fonttools brotli`):
+
+```bash
+python3 scripts/subset-cjk-fonts.py
+```
 
 ### Social links (GitHub / Google Scholar / ORCID)
 Commented-out buttons are in the hero (`<ul class="hero__links">`). Uncomment and fill in your real URL.
