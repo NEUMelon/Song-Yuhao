@@ -8,6 +8,9 @@ Live site (after GitHub Pages is enabled): <https://neumelon.github.io/Song-Yuha
 
 Plain static site: **HTML + CSS + a little JavaScript**. No build step, no dependencies.
 
+Bilingual: English by default; the **中文 / English** button in the top navigation switches the whole page in place
+(no reload). The choice is remembered, and `?lang=zh` / `?lang=en` in the URL forces a language.
+
 ## Run locally
 
 ```bash
@@ -20,10 +23,10 @@ python3 -m http.server 8000
 ## File structure
 
 ```
-index.html              All page content (single page)
+index.html              All content, English text + Chinese in `data-zh` attributes
 assets/
   css/style.css         Styles, light/dark themes via CSS variables
-  js/main.js            Theme toggle, nav highlight, optional CV/photo detection
+  js/main.js            Language + theme toggles, nav highlight, optional CV/photo detection
   favicon.svg           Placeholder favicon ("SY")
   img/                  Put project images here
   cv.pdf                (you add) CV — button appears automatically
@@ -35,7 +38,10 @@ robots.txt, sitemap.xml SEO
 
 ## How to update
 
-All content lives in `index.html`. Search for the section `id` (e.g. `id="publications"`).
+All content lives in `index.html`. English is the normal element text; the Chinese version of the same
+element is in a `data-zh="…"` attribute (for attributes such as `aria-label` / `alt` / `title` use
+`data-zh-aria-label` etc.). **When you add or change text, update both the English text and its `data-zh`.**
+Elements without `data-zh` (e.g. paper titles, patent titles) are the same in both languages. Search for the section `id` (e.g. `id="publications"`).
 Any block that is missing information is marked with an HTML comment starting with `TODO`.
 
 ### Publications
@@ -55,7 +61,7 @@ granted patents — change the wording only when a patent is actually granted. T
 labeled "Informal translation (not official)".
 
 ### CV
-Upload your CV as `assets/cv.pdf`. The **CV** button in the hero appears automatically.
+Upload your CV as `assets/cv.pdf`. The **CV** button appears automatically.
 
 ### Profile photo
 Add `assets/profile.jpg` (roughly square, ≥ 440×440 px, compressed). It appears automatically in
@@ -79,7 +85,7 @@ paths in the site are relative, so it works both there and at a domain root.
 
 > Renaming the repository to `NEUMelon.github.io` would serve it from the root of that domain
 > instead. If you do, update the URL in `index.html` (canonical, `og:url`, JSON-LD),
-> `robots.txt`, and `sitemap.xml`.
+> `robots.txt`, and `sitemap.xml` .
 
 ### Custom domain
 1. Create a file named `CNAME` in the repository root containing only your domain, e.g. `example.com`

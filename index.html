@@ -3,8 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Song Yuhao | Northeastern University</title>
-  <meta name="description" content="Song Yuhao is an undergraduate student in Automation at Northeastern University, China, interested in large language models, embodied AI, and time-series forecasting.">
+  <!--
+    Bilingual page (English default, click "中文" to switch in place).
+    Every translatable element carries its Chinese text in data-zh (element content)
+    or data-zh-<attribute> (title, aria-label, alt, lang, content). See assets/js/main.js.
+  -->
+  <title data-zh="宋宇浩 | 东北大学">Song Yuhao | Northeastern University</title>
+  <meta name="description" content="Song Yuhao is an undergraduate student in Automation at Northeastern University, China, interested in large language models, embodied AI, and time-series forecasting." data-zh-content="宋宇浩，东北大学自动化专业本科生，研究兴趣包括大语言模型、具身智能与时间序列预测。">
   <meta name="author" content="Song Yuhao">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://neumelon.github.io/Song-Yuhao/">
@@ -15,6 +20,8 @@
   <meta property="og:description" content="Undergraduate student in Automation at Northeastern University, China. Research interests: large language models, embodied AI, and time-series forecasting.">
   <meta property="og:url" content="https://neumelon.github.io/Song-Yuhao/">
   <meta property="og:site_name" content="Song Yuhao">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
   <!-- TODO: add <meta property="og:image"> once a profile photo / social card exists -->
   <meta name="twitter:card" content="summary">
 
@@ -49,20 +56,22 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-zh="跳到正文">Skip to content</a>
 
   <header class="site-header">
-    <nav class="nav container" aria-label="Primary">
-      <a class="nav__brand" href="#top">Song Yuhao</a>
+    <nav class="nav container" aria-label="Primary" data-zh-aria-label="主导航">
+      <a class="nav__brand" href="#top" data-zh="宋宇浩">Song Yuhao</a>
       <ul class="nav__links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#patents">Patents</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-zh="关于">About</a></li>
+        <li><a href="#research" data-zh="研究兴趣">Research</a></li>
+        <li><a href="#publications" data-zh="论文">Publications</a></li>
+        <li><a href="#projects" data-zh="研究项目">Projects</a></li>
+        <li><a href="#patents" data-zh="专利">Patents</a></li>
+        <li><a href="#contact" data-zh="联系">Contact</a></li>
       </ul>
-      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark theme" title="Toggle light / dark theme">
+      <!-- Shows the language you would switch TO -->
+      <button class="lang-switch" type="button" id="lang-toggle" lang="zh-CN" data-zh-lang="en" data-zh="English" aria-label="Switch to Chinese" data-zh-aria-label="切换为中文" title="切换到中文 / Switch to Chinese" data-zh-title="Switch to English / 切换到英文">中文</button>
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark theme" title="Toggle light / dark theme" data-zh-title="切换浅色 / 深色主题">
         <svg class="icon icon--moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
         <svg class="icon icon--sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
@@ -73,20 +82,17 @@
     <!-- ============================== Hero ============================== -->
     <section class="hero container" id="top" aria-labelledby="hero-name">
       <div class="hero__text">
-        <h1 id="hero-name">Song Yuhao <span class="hero__zh" lang="zh-CN">宋宇浩</span></h1>
-        <p class="hero__role">Undergraduate Student in Automation, 2024–2028</p>
-        <p class="hero__affil">
-          College of Information Science and Engineering<br>
-          Northeastern University, China
-        </p>
+        <h1 id="hero-name"><span data-zh="宋宇浩">Song Yuhao</span> <span class="hero__zh" lang="zh-CN" data-zh-lang="en" data-zh="Song Yuhao">宋宇浩</span></h1>
+        <p class="hero__role" data-zh="自动化专业本科生，2024–2028">Undergraduate Student in Automation, 2024–2028</p>
+        <p class="hero__affil" data-zh="信息科学与工程学院<br>东北大学">College of Information Science and Engineering<br>Northeastern University, China</p>
         <p class="hero__interests">
-          <span class="label">Research interests</span>
-          Large Language Models · Embodied AI · Time-Series Forecasting
+          <span class="label" data-zh="研究兴趣">Research interests</span>
+          <span data-zh="大语言模型 · 具身智能 · 时间序列预测">Large Language Models · Embodied AI · Time-Series Forecasting</span>
         </p>
         <ul class="hero__links">
-          <li><a class="btn" href="mailto:songyuhao799@gmail.com">Email</a></li>
+          <li><a class="btn" href="mailto:songyuhao799@gmail.com" data-zh="邮箱">Email</a></li>
           <!-- Shown automatically once assets/cv.pdf exists (see assets/js/main.js) -->
-          <li id="cv-item" hidden><a class="btn" href="assets/cv.pdf">CV</a></li>
+          <li id="cv-item" hidden><a class="btn" href="assets/cv.pdf" data-zh="简历">CV</a></li>
           <!-- TODO: GitHub link (add your profile URL)
           <li><a class="btn" href="https://github.com/YOUR_USERNAME">GitHub</a></li> -->
           <!-- TODO: Google Scholar link (add when a profile exists)
@@ -97,23 +103,23 @@
       </div>
       <!-- Shown automatically once assets/profile.jpg exists (see assets/js/main.js) -->
       <figure class="hero__photo" id="hero-photo" hidden>
-        <img id="hero-photo-img" alt="Portrait of Song Yuhao" width="220" height="220" decoding="async">
+        <img id="hero-photo-img" alt="Portrait of Song Yuhao" data-zh-alt="宋宇浩的照片" width="220" height="220" decoding="async">
       </figure>
     </section>
 
     <div class="container">
-      <ul class="glance" aria-label="Output at a glance">
-        <li><strong>1</strong><span>SCI Journal Paper</span></li>
-        <li><strong>1</strong><span>Conference Paper</span></li>
-        <li><strong>2</strong><span>Published Patent Applications</span></li>
+      <ul class="glance" aria-label="Output at a glance" data-zh-aria-label="成果概览">
+        <li><strong>1</strong><span data-zh="篇 SCI 期刊论文">SCI Journal Paper</span></li>
+        <li><strong>1</strong><span data-zh="篇会议论文">Conference Paper</span></li>
+        <li><strong>2</strong><span data-zh="项已公开的专利申请">Published Patent Applications</span></li>
       </ul>
     </div>
 
     <!-- ============================== About ============================== -->
     <section class="section container" id="about" aria-labelledby="about-h">
-      <h2 id="about-h">About</h2>
+      <h2 id="about-h" data-zh="关于">About</h2>
       <div class="section__body prose">
-        <p>
+        <p data-zh="我是东北大学自动化专业的本科生，研究兴趣包括大语言模型、具身智能和时间序列预测。目前的研究主要围绕多变量预测，特别是跨通道信息建模与外生变量的可靠性，同时也关注智能系统的构建。">
           I am an undergraduate student in Automation at Northeastern University, China. My research
           interests include large language models, embodied AI, and time-series forecasting. My current
           work focuses on multivariate forecasting, in particular cross-channel information modeling and
@@ -124,25 +130,25 @@
 
     <!-- ============================== Research ============================== -->
     <section class="section container" id="research" aria-labelledby="research-h">
-      <h2 id="research-h">Research Interests</h2>
+      <h2 id="research-h" data-zh="研究兴趣">Research Interests</h2>
       <div class="section__body">
         <div class="areas">
           <article class="area">
-            <h3>Large Language Models</h3>
-            <p>Understanding large language models and applying them as components of intelligent systems.</p>
+            <h3 data-zh="大语言模型">Large Language Models</h3>
+            <p data-zh="理解大语言模型，并将其作为智能系统的组成部分加以应用。">Understanding large language models and applying them as components of intelligent systems.</p>
           </article>
           <article class="area">
-            <h3>Embodied AI</h3>
-            <p>Intelligent agents that perceive, reason, and act in physical environments.</p>
+            <h3 data-zh="具身智能">Embodied AI</h3>
+            <p data-zh="能够在物理环境中感知、推理并行动的智能体。">Intelligent agents that perceive, reason, and act in physical environments.</p>
           </article>
           <article class="area">
-            <h3>Time-Series Forecasting</h3>
-            <p>Current research area, including:</p>
+            <h3 data-zh="时间序列预测">Time-Series Forecasting</h3>
+            <p data-zh="当前的研究方向，包括：">Current research area, including:</p>
             <ul class="area__topics">
-              <li>Multivariate time-series forecasting</li>
-              <li>Channel communication</li>
-              <li>Exogenous variables</li>
-              <li>Foundation models / Transformer-based forecasting</li>
+              <li data-zh="多变量时间序列预测">Multivariate time-series forecasting</li>
+              <li data-zh="通道间通信">Channel communication</li>
+              <li data-zh="外生变量">Exogenous variables</li>
+              <li data-zh="基础模型 / 基于 Transformer 的预测">Foundation models / Transformer-based forecasting</li>
             </ul>
           </article>
         </div>
@@ -151,26 +157,27 @@
 
     <!-- ============================== Publications ============================== -->
     <section class="section container" id="publications" aria-labelledby="pubs-h">
-      <h2 id="pubs-h">Publications</h2>
+      <h2 id="pubs-h" data-zh="论文">Publications</h2>
       <div class="section__body">
+        <p class="note zh-only" data-zh="论文标题保持英文原题。"></p>
         <ol class="pubs">
           <li class="pub" id="pub-clgcc">
-            <p class="pub__type">SCI Journal Paper</p>
+            <p class="pub__type" data-zh="SCI 期刊论文">SCI Journal Paper</p>
             <h3 class="pub__title">Controlled Local–Global Channel Communication for Multivariate Long-Term Forecasting</h3>
             <!-- TODO: add author list (with author order) and journal name/year once confirmed -->
-            <p class="pub__meta">DOI: <a href="https://doi.org/10.3390/math14173132">10.3390/math14173132</a></p>
+            <p class="pub__meta"><span data-zh="DOI：">DOI: </span><a href="https://doi.org/10.3390/math14173132">10.3390/math14173132</a></p>
             <ul class="links">
-              <li><a class="btn btn--sm" href="https://doi.org/10.3390/math14173132">Paper</a></li>
+              <li><a class="btn btn--sm" href="https://doi.org/10.3390/math14173132" data-zh="论文">Paper</a></li>
               <li><a class="btn btn--sm" href="https://doi.org/10.3390/math14173132">DOI</a></li>
-              <!-- <li><a class="btn btn--sm" href="#">Code</a></li> -->
+              <!-- <li><a class="btn btn--sm" href="#" data-zh="代码">Code</a></li> -->
             </ul>
           </li>
           <li class="pub" id="pub-stress">
-            <p class="pub__type">Conference Paper</p>
+            <p class="pub__type" data-zh="会议论文">Conference Paper</p>
             <h3 class="pub__title">A Diagnostic Stress-Test Framework for Exogenous Variable Reliability in Transformer-based Time Series Forecasting</h3>
             <!-- TODO: add author list, conference name, year, and DOI once confirmed.
                  Index number below is as provided; do not label it "EI" until verified. -->
-            <p class="pub__meta">Index number: 20263321294146</p>
+            <p class="pub__meta"><span data-zh="索引号：">Index number: </span>20263321294146</p>
           </li>
         </ol>
       </div>
@@ -178,51 +185,52 @@
 
     <!-- ============================== Projects ============================== -->
     <section class="section container" id="projects" aria-labelledby="projects-h">
-      <h2 id="projects-h">Selected Research</h2>
+      <h2 id="projects-h" data-zh="研究项目">Selected Research</h2>
       <div class="section__body">
         <div class="projects">
           <!--
             To add a project, copy one <article class="project"> block below.
             Optional parts: <figure class="project__media"> (image), and any <li> in .links.
             Delete the parts you do not have; nothing else needs to change.
+            Add data-zh="…" (Chinese text) to every element that has English text.
           -->
           <article class="project" id="proj-channel">
-            <!-- <figure class="project__media"><img src="assets/img/NAME.png" alt="DESCRIPTION" loading="lazy" width="320" height="200"></figure> -->
+            <!-- <figure class="project__media"><img src="assets/img/NAME.png" alt="DESCRIPTION" data-zh-alt="图片说明" loading="lazy" width="320" height="200"></figure> -->
             <div class="project__body">
-              <h3>Controlled Local–Global Channel Communication</h3>
-              <p>
+              <h3 data-zh="受控局部–全局通道通信">Controlled Local–Global Channel Communication</h3>
+              <p data-zh="研究面向多变量长期时间序列预测的、通道之间受控的局部–全局通信。">
                 Investigates controlled local–global communication among channels for multivariate
                 long-term time-series forecasting.
               </p>
-              <ul class="tags" aria-label="Topics">
-                <li>Multivariate long-term forecasting</li>
-                <li>Controlled channel communication</li>
-                <li>Local–global interaction</li>
+              <ul class="tags" aria-label="Topics" data-zh-aria-label="主题">
+                <li data-zh="多变量长期预测">Multivariate long-term forecasting</li>
+                <li data-zh="受控通道通信">Controlled channel communication</li>
+                <li data-zh="局部–全局交互">Local–global interaction</li>
               </ul>
               <ul class="links">
-                <li><a class="btn btn--sm" href="#pub-clgcc">SCI paper</a></li>
-                <li><a class="btn btn--sm" href="#patent-cn122823403a">Patent application CN122823403A</a></li>
-                <!-- <li><a class="btn btn--sm" href="#">Code</a></li> -->
-                <!-- <li><a class="btn btn--sm" href="#">Project page</a></li> -->
+                <li><a class="btn btn--sm" href="#pub-clgcc" data-zh="SCI 论文">SCI paper</a></li>
+                <li><a class="btn btn--sm" href="#patent-cn122823403a" data-zh="专利申请 CN122823403A">Patent application CN122823403A</a></li>
+                <!-- <li><a class="btn btn--sm" href="#" data-zh="代码">Code</a></li> -->
+                <!-- <li><a class="btn btn--sm" href="#" data-zh="项目主页">Project page</a></li> -->
               </ul>
             </div>
           </article>
 
           <article class="project" id="proj-exogenous">
             <div class="project__body">
-              <h3>Reliable Exogenous Variables for Time-Series Forecasting</h3>
-              <p>
+              <h3 data-zh="面向时间序列预测的可靠外生变量">Reliable Exogenous Variables for Time-Series Forecasting</h3>
+              <p data-zh="研究基于 Transformer 的预测模型对外生变量的依赖是否可靠，方法包括诊断式压力测试框架，以及面向长期预测的专家模型选择。">
                 Investigates how reliable exogenous variables are in Transformer-based forecasting, through a
                 diagnostic stress-test framework and expert model selection for long-term forecasting.
               </p>
-              <ul class="tags" aria-label="Topics">
-                <li>Exogenous-variable reliability</li>
-                <li>Transformer-based forecasting</li>
-                <li>Expert model selection</li>
+              <ul class="tags" aria-label="Topics" data-zh-aria-label="主题">
+                <li data-zh="外生变量可靠性">Exogenous-variable reliability</li>
+                <li data-zh="基于 Transformer 的预测">Transformer-based forecasting</li>
+                <li data-zh="专家模型选择">Expert model selection</li>
               </ul>
               <ul class="links">
-                <li><a class="btn btn--sm" href="#pub-stress">Conference paper</a></li>
-                <li><a class="btn btn--sm" href="#patent-cn122779322a">Patent application CN122779322A</a></li>
+                <li><a class="btn btn--sm" href="#pub-stress" data-zh="会议论文">Conference paper</a></li>
+                <li><a class="btn btn--sm" href="#patent-cn122779322a" data-zh="专利申请 CN122779322A">Patent application CN122779322A</a></li>
               </ul>
             </div>
           </article>
@@ -232,21 +240,21 @@
 
     <!-- ============================== Patents ============================== -->
     <section class="section container" id="patents" aria-labelledby="patents-h">
-      <h2 id="patents-h">Patent Applications</h2>
+      <h2 id="patents-h" data-zh="专利申请">Patent Applications</h2>
       <div class="section__body">
-        <p class="note">Published Chinese patent applications; not granted patents.</p>
+        <p class="note" data-zh="以下为已公开的中国专利申请，并非已授权专利。">Published Chinese patent applications; not granted patents.</p>
         <ol class="pubs">
           <li class="pub" id="patent-cn122823403a">
-            <p class="pub__type">Published Patent Application</p>
+            <p class="pub__type" data-zh="已公开的专利申请">Published Patent Application</p>
             <h3 class="pub__title pub__title--zh" lang="zh-CN">基于受控通道通信的配电网多测点负荷预测方法及装置、存储介质、计算机设备</h3>
-            <p class="pub__meta">Publication number: CN122823403A</p>
-            <p class="pub__gloss">Informal translation (not official): Method and apparatus, storage medium, and computer device for multi-measurement-point load forecasting in distribution networks based on controlled channel communication.</p>
+            <p class="pub__meta"><span data-zh="公开号：">Publication number: </span>CN122823403A</p>
+            <p class="pub__gloss en-only">Informal translation (not official): Method and apparatus, storage medium, and computer device for multi-measurement-point load forecasting in distribution networks based on controlled channel communication.</p>
           </li>
           <li class="pub" id="patent-cn122779322a">
-            <p class="pub__type">Published Patent Application</p>
+            <p class="pub__type" data-zh="已公开的专利申请">Published Patent Application</p>
             <h3 class="pub__title pub__title--zh" lang="zh-CN">面向外生变量长期时间序列预测的专家模型选择方法及装置</h3>
-            <p class="pub__meta">Publication number: CN122779322A</p>
-            <p class="pub__gloss">Informal translation (not official): Expert model selection method and apparatus for long-term time-series forecasting with exogenous variables.</p>
+            <p class="pub__meta"><span data-zh="公开号：">Publication number: </span>CN122779322A</p>
+            <p class="pub__gloss en-only">Informal translation (not official): Expert model selection method and apparatus for long-term time-series forecasting with exogenous variables.</p>
           </li>
         </ol>
       </div>
@@ -254,13 +262,13 @@
 
     <!-- ============================== Contact ============================== -->
     <section class="section container" id="contact" aria-labelledby="contact-h">
-      <h2 id="contact-h">Contact</h2>
+      <h2 id="contact-h" data-zh="联系方式">Contact</h2>
       <div class="section__body">
         <dl class="contact">
-          <dt>Email</dt>
+          <dt data-zh="邮箱">Email</dt>
           <dd><a href="mailto:songyuhao799@gmail.com">songyuhao799@gmail.com</a></dd>
-          <dt>Address</dt>
-          <dd>College of Information Science and Engineering,<br>Northeastern University, China</dd>
+          <dt data-zh="单位">Address</dt>
+          <dd data-zh="东北大学<br>信息科学与工程学院">College of Information Science and Engineering,<br>Northeastern University, China</dd>
         </dl>
       </div>
     </section>
@@ -268,7 +276,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© Song Yuhao</p>
+      <p data-zh="© 宋宇浩">© Song Yuhao</p>
     </div>
   </footer>
 
