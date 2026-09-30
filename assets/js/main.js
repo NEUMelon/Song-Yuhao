@@ -124,6 +124,20 @@
     probe.src = 'assets/profile.jpg';
   }
 
+  /* ---------- Reveal sections as they scroll into view ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.04 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
   /* ---------- Highlight the current section in the nav ---------- */
   var links = document.querySelectorAll('.nav__links a[href^="#"]');
   var sections = [];
