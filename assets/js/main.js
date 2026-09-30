@@ -2,6 +2,8 @@
   'use strict';
 
   var root = document.documentElement;
+  // Path to assets/ relative to the current page (the Chinese page lives in zh/).
+  var assets = document.body.getAttribute('data-assets') || 'assets/';
 
   /* ---------- Theme toggle ---------- */
   var toggle = document.getElementById('theme-toggle');
@@ -13,7 +15,9 @@
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
     if (toggle) {
-      toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      var toLight = toggle.getAttribute('data-label-light') || 'Switch to light theme';
+      var toDark = toggle.getAttribute('data-label-dark') || 'Switch to dark theme';
+      toggle.setAttribute('aria-label', theme === 'dark' ? toLight : toDark);
     }
   }
 
@@ -43,7 +47,7 @@
      (A 404 for a missing optional file may appear in the browser console.) */
   var cvItem = document.getElementById('cv-item');
   if (cvItem && window.fetch) {
-    fetch('assets/cv.pdf', { method: 'HEAD' })
+    fetch(assets + 'cv.pdf', { method: 'HEAD' })
       .then(function (res) {
         var type = res.headers.get('content-type') || '';
         if (res.ok && type.indexOf('pdf') !== -1) cvItem.hidden = false;
@@ -59,7 +63,7 @@
       photoImg.src = probe.src;
       photo.hidden = false;
     };
-    probe.src = 'assets/profile.jpg';
+    probe.src = assets + 'profile.jpg';
   }
 
   /* ---------- Highlight the current section in the nav ---------- */
