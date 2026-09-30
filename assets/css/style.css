@@ -22,6 +22,40 @@
   src: url("../fonts/inter-latin-wght.woff2") format("woff2-variations");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+/* Chinese: subsets of Noto Serif SC / Noto Sans SC holding only the characters used on the page
+   (rebuild with scripts/subset-cjk-fonts.py); other characters fall back to the system CJK font. */
+@font-face {
+  font-family: "Noto Serif SC Subset";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/noto-serif-sc-400.woff2") format("woff2");
+  unicode-range: U+3000-303F, U+4E00-9FFF, U+FF00-FFEF, U+2014, U+2018-201D, U+2026, U+00B7;
+}
+@font-face {
+  font-family: "Noto Serif SC Subset";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url("../fonts/noto-serif-sc-600.woff2") format("woff2");
+  unicode-range: U+3000-303F, U+4E00-9FFF, U+FF00-FFEF, U+2014, U+2018-201D, U+2026, U+00B7;
+}
+@font-face {
+  font-family: "Noto Sans SC Subset";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/noto-sans-sc-400.woff2") format("woff2");
+  unicode-range: U+3000-303F, U+4E00-9FFF, U+FF00-FFEF, U+2014, U+2018-201D, U+2026, U+00B7;
+}
+@font-face {
+  font-family: "Noto Sans SC Subset";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url("../fonts/noto-sans-sc-600.woff2") format("woff2");
+  unicode-range: U+3000-303F, U+4E00-9FFF, U+FF00-FFEF, U+2014, U+2018-201D, U+2026, U+00B7;
+}
 
 :root {
   --bg: #faf8f4;
@@ -34,10 +68,10 @@
   --accent-soft: rgba(176, 67, 42, 0.09);
   --shadow: 0 10px 30px -12px rgba(60, 40, 20, 0.22);
 
-  --font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+  --font-sans: "Inter Variable", "Noto Sans SC Subset", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
-  /* Latin from Newsreader; Chinese falls through to the system sans (faux-bold Songti looks poor on Windows) */
-  --font-serif: "Newsreader Variable", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman",
+  /* Latin from Newsreader; Chinese from the Noto Serif SC subset, then system fonts */
+  --font-serif: "Newsreader Variable", "Noto Serif SC Subset", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman",
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans CJK SC", serif;
 
   --maxw: 1120px;

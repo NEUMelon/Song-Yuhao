@@ -10,6 +10,12 @@ Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter) Inter-I
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 
+=== Noto Serif SC and Noto Sans SC (subsets) ===
+Copyright 2012 Google Inc. All Rights Reserved.
+Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'
+The noto-*-sc-*.woff2 files are subsets containing only the characters used on the page.
+Rebuild with scripts/subset-cjk-fonts.py.
+
 --- Full license text ---
 SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
 -----------------------------------------------------------
