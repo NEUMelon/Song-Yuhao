@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--
-    Bilingual page (English default, click "中文" to switch in place).
-    Every translatable element carries its Chinese text in data-zh (element content)
-    or data-zh-<attribute> (title, aria-label, alt, lang, content). See assets/js/main.js.
+    Bilingual page (English default, the top-right button switches in place).
+    Chinese text lives next to the English in data-zh (element content) or
+    data-zh-<attribute> (title, aria-label, alt, lang, content). See assets/js/main.js.
   -->
   <title data-zh="宋宇浩 | 东北大学">Song Yuhao | Northeastern University</title>
   <meta name="description" content="Song Yuhao is an undergraduate student in Automation at Northeastern University, China, interested in large language models, embodied AI, and time-series forecasting." data-zh-content="宋宇浩，东北大学自动化专业本科生，研究兴趣包括大语言模型、具身智能与时间序列预测。">
@@ -27,15 +27,17 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <!-- Apply the saved / system theme before first paint to avoid a flash -->
+  <!-- Set theme before first paint (no flash); mark JS as available for reveal animations -->
   <script>
     (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
       var t = null;
       try { t = localStorage.getItem('theme'); } catch (e) {}
       if (t !== 'light' && t !== 'dark') {
         t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
-      document.documentElement.setAttribute('data-theme', t);
+      root.setAttribute('data-theme', t);
     })();
   </script>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -63,9 +65,9 @@
       <a class="nav__brand" href="#top" data-zh="宋宇浩">Song Yuhao</a>
       <ul class="nav__links">
         <li><a href="#about" data-zh="关于">About</a></li>
-        <li><a href="#research" data-zh="研究兴趣">Research</a></li>
+        <li><a href="#research" data-zh="研究方向">Research</a></li>
         <li><a href="#publications" data-zh="论文">Publications</a></li>
-        <li><a href="#projects" data-zh="研究项目">Projects</a></li>
+        <li><a href="#projects" data-zh="项目">Projects</a></li>
         <li><a href="#patents" data-zh="专利">Patents</a></li>
         <li><a href="#contact" data-zh="联系">Contact</a></li>
       </ul>
@@ -78,19 +80,22 @@
     </nav>
   </header>
 
-  <main id="main">
-    <!-- ============================== Hero ============================== -->
-    <section class="hero container" id="top" aria-labelledby="hero-name">
-      <div class="hero__text">
-        <h1 id="hero-name"><span data-zh="宋宇浩">Song Yuhao</span> <span class="hero__zh" lang="zh-CN" data-zh-lang="en" data-zh="Song Yuhao">宋宇浩</span></h1>
-        <p class="hero__role" data-zh="自动化专业本科生，2024–2028">Undergraduate Student in Automation, 2024–2028</p>
-        <p class="hero__affil" data-zh="信息科学与工程学院<br>东北大学">College of Information Science and Engineering<br>Northeastern University, China</p>
-        <p class="hero__interests">
-          <span class="label" data-zh="研究兴趣">Research interests</span>
-          <span data-zh="大语言模型 · 具身智能 · 时间序列预测">Large Language Models · Embodied AI · Time-Series Forecasting</span>
-        </p>
-        <ul class="hero__links">
-          <li><a class="btn" href="mailto:songyuhao799@gmail.com" data-zh="邮箱">Email</a></li>
+  <main id="main" class="page container">
+
+    <!-- ============================== Profile ============================== -->
+    <section class="profile" id="top" aria-labelledby="hero-name">
+      <div class="profile__inner">
+        <!-- Shown automatically once assets/profile.jpg exists (see assets/js/main.js) -->
+        <figure class="profile__photo" id="hero-photo" hidden>
+          <img id="hero-photo-img" alt="Portrait of Song Yuhao" data-zh-alt="宋宇浩的照片" width="220" height="220" decoding="async">
+        </figure>
+
+        <h1 id="hero-name"><span data-zh="宋宇浩">Song Yuhao</span> <span class="profile__zh" lang="zh-CN" data-zh-lang="en" data-zh="Song Yuhao">宋宇浩</span></h1>
+        <p class="profile__role" data-zh="自动化专业本科生，2024–2028">Undergraduate in Automation, 2024–2028</p>
+        <p class="profile__affil" data-zh="信息科学与工程学院<br>东北大学">College of Information Science and Engineering<br>Northeastern University, China</p>
+
+        <ul class="profile__links">
+          <li><a class="btn btn--primary" href="mailto:songyuhao799@gmail.com" data-zh="邮箱">Email</a></li>
           <!-- Shown automatically once assets/cv.pdf exists (see assets/js/main.js) -->
           <li id="cv-item" hidden><a class="btn" href="assets/cv.pdf" data-zh="简历">CV</a></li>
           <!-- TODO: GitHub link (add your profile URL)
@@ -100,178 +105,175 @@
           <!-- TODO: ORCID link (add when a profile exists)
           <li><a class="btn" href="https://orcid.org/0000-0000-0000-0000">ORCID</a></li> -->
         </ul>
-      </div>
-      <!-- Shown automatically once assets/profile.jpg exists (see assets/js/main.js) -->
-      <figure class="hero__photo" id="hero-photo" hidden>
-        <img id="hero-photo-img" alt="Portrait of Song Yuhao" data-zh-alt="宋宇浩的照片" width="220" height="220" decoding="async">
-      </figure>
-    </section>
 
-    <div class="container">
-      <ul class="glance" aria-label="Output at a glance" data-zh-aria-label="成果概览">
-        <li><strong>1</strong><span data-zh="篇 SCI 期刊论文">SCI Journal Paper</span></li>
-        <li><strong>1</strong><span data-zh="篇会议论文">Conference Paper</span></li>
-        <li><strong>2</strong><span data-zh="项已公开的专利申请">Published Patent Applications</span></li>
-      </ul>
-    </div>
+        <div class="profile__block">
+          <h2 class="eyebrow" data-zh="研究兴趣">Research interests</h2>
+          <ul class="interests">
+            <li data-zh="大语言模型">Large Language Models</li>
+            <li data-zh="具身智能">Embodied AI</li>
+            <li data-zh="时间序列预测">Time-Series Forecasting</li>
+          </ul>
+        </div>
 
-    <!-- ============================== About ============================== -->
-    <section class="section container" id="about" aria-labelledby="about-h">
-      <h2 id="about-h" data-zh="关于">About</h2>
-      <div class="section__body prose">
-        <p data-zh="我是东北大学自动化专业的本科生，研究兴趣包括大语言模型、具身智能和时间序列预测。目前的研究主要围绕多变量预测，特别是跨通道信息建模与外生变量的可靠性，同时也关注智能系统的构建。">
-          I am an undergraduate student in Automation at Northeastern University, China. My research
-          interests include large language models, embodied AI, and time-series forecasting. My current
-          work focuses on multivariate forecasting, in particular cross-channel information modeling and
-          the reliability of exogenous variables, with a broader interest in building intelligent systems.
-        </p>
+        <ul class="facts" aria-label="Output so far" data-zh-aria-label="目前的成果">
+          <li><strong>1</strong><span data-zh="SCI 期刊论文">SCI journal paper</span></li>
+          <li><strong>1</strong><span data-zh="会议论文">Conference paper</span></li>
+          <li><strong>2</strong><span data-zh="已公开的专利申请">Published patent applications</span></li>
+        </ul>
       </div>
     </section>
 
-    <!-- ============================== Research ============================== -->
-    <section class="section container" id="research" aria-labelledby="research-h">
-      <h2 id="research-h" data-zh="研究兴趣">Research Interests</h2>
-      <div class="section__body">
+    <div class="content">
+
+      <!-- ============================== About ============================== -->
+      <section class="section reveal" id="about" aria-labelledby="about-h">
+        <h2 id="about-h" data-zh="关于">About</h2>
+        <div class="prose">
+          <p class="lede" data-zh="我是东北大学自动化专业的本科生。目前的研究集中在多变量时间序列预测：通道之间该如何交换信息，以及模型依赖的外生变量什么时候可信。">
+            I'm an undergraduate in the Automation program at Northeastern University, China.
+            My research so far is in multivariate time-series forecasting: how channels should
+            exchange information, and when the exogenous variables a model relies on can be trusted.
+          </p>
+          <p data-zh="这些工作已经形成一篇期刊论文、一篇会议论文和两项专利申请。除了预测，我也关注大语言模型和具身智能。">
+            That work has led to a journal paper, a conference paper, and two patent applications.
+            Beyond forecasting, I'm interested in large language models and embodied AI.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================== Research ============================== -->
+      <section class="section reveal" id="research" aria-labelledby="research-h">
+        <h2 id="research-h" data-zh="研究方向">Research</h2>
         <div class="areas">
-          <article class="area">
-            <h3 data-zh="大语言模型">Large Language Models</h3>
-            <p data-zh="理解大语言模型，并将其作为智能系统的组成部分加以应用。">Understanding large language models and applying them as components of intelligent systems.</p>
-          </article>
-          <article class="area">
-            <h3 data-zh="具身智能">Embodied AI</h3>
-            <p data-zh="能够在物理环境中感知、推理并行动的智能体。">Intelligent agents that perceive, reason, and act in physical environments.</p>
-          </article>
-          <article class="area">
+          <article class="panel area area--wide">
             <h3 data-zh="时间序列预测">Time-Series Forecasting</h3>
-            <p data-zh="当前的研究方向，包括：">Current research area, including:</p>
-            <ul class="area__topics">
-              <li data-zh="多变量时间序列预测">Multivariate time-series forecasting</li>
+            <p data-zh="我目前的工作主要在这个方向。">Where most of my work is right now.</p>
+            <ul class="tags" aria-label="Topics" data-zh-aria-label="主题">
+              <li data-zh="多变量预测">Multivariate forecasting</li>
               <li data-zh="通道间通信">Channel communication</li>
               <li data-zh="外生变量">Exogenous variables</li>
               <li data-zh="基础模型 / 基于 Transformer 的预测">Foundation models / Transformer-based forecasting</li>
             </ul>
           </article>
+          <article class="panel area">
+            <h3 data-zh="大语言模型">Large Language Models</h3>
+            <p data-zh="大语言模型是如何工作的，以及如何围绕它们搭建真正有用的系统。">How large language models work, and how to build useful systems around them.</p>
+          </article>
+          <article class="panel area">
+            <h3 data-zh="具身智能">Embodied AI</h3>
+            <p data-zh="在物理世界中行动的智能体，而不只是处理文本和数据。">Agents that act in the physical world, not only on text and data.</p>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================== Publications ============================== -->
-    <section class="section container" id="publications" aria-labelledby="pubs-h">
-      <h2 id="pubs-h" data-zh="论文">Publications</h2>
-      <div class="section__body">
+      <!-- ============================== Publications ============================== -->
+      <section class="section reveal" id="publications" aria-labelledby="pubs-h">
+        <h2 id="pubs-h" data-zh="论文">Publications</h2>
         <p class="note zh-only" data-zh="论文标题保持英文原题。"></p>
-        <ol class="pubs">
-          <li class="pub" id="pub-clgcc">
-            <p class="pub__type" data-zh="SCI 期刊论文">SCI Journal Paper</p>
-            <h3 class="pub__title">Controlled Local–Global Channel Communication for Multivariate Long-Term Forecasting</h3>
-            <!-- TODO: add author list (with author order) and journal name/year once confirmed -->
-            <p class="pub__meta"><span data-zh="DOI：">DOI: </span><a href="https://doi.org/10.3390/math14173132">10.3390/math14173132</a></p>
-            <ul class="links">
-              <li><a class="btn btn--sm" href="https://doi.org/10.3390/math14173132" data-zh="论文">Paper</a></li>
-              <li><a class="btn btn--sm" href="https://doi.org/10.3390/math14173132">DOI</a></li>
-              <!-- <li><a class="btn btn--sm" href="#" data-zh="代码">Code</a></li> -->
-            </ul>
+        <ol class="entries">
+          <li class="entry" id="pub-clgcc">
+            <div class="entry__body">
+              <p class="entry__type" data-zh="SCI 期刊论文">SCI journal paper</p>
+              <h3 class="entry__title">Controlled Local–Global Channel Communication for Multivariate Long-Term Forecasting</h3>
+              <!-- TODO: add author list (with author order) and journal name/year once confirmed -->
+              <p class="entry__meta"><span data-zh="DOI：">DOI: </span><a href="https://doi.org/10.3390/math14173132">10.3390/math14173132</a></p>
+              <ul class="links">
+                <li><a class="btn btn--sm" href="https://doi.org/10.3390/math14173132" data-zh="论文">Paper</a></li>
+                <li><a class="btn btn--sm" href="https://doi.org/10.3390/math14173132">DOI</a></li>
+                <!-- <li><a class="btn btn--sm" href="#" data-zh="代码">Code</a></li> -->
+              </ul>
+            </div>
           </li>
-          <li class="pub" id="pub-stress">
-            <p class="pub__type" data-zh="会议论文">Conference Paper</p>
-            <h3 class="pub__title">A Diagnostic Stress-Test Framework for Exogenous Variable Reliability in Transformer-based Time Series Forecasting</h3>
-            <!-- TODO: add author list, conference name, year, and DOI once confirmed.
-                 Index number below is as provided; do not label it "EI" until verified. -->
-            <p class="pub__meta"><span data-zh="索引号：">Index number: </span>20263321294146</p>
+          <li class="entry" id="pub-stress">
+            <div class="entry__body">
+              <p class="entry__type" data-zh="会议论文">Conference paper</p>
+              <h3 class="entry__title">A Diagnostic Stress-Test Framework for Exogenous Variable Reliability in Transformer-based Time Series Forecasting</h3>
+              <!-- TODO: add author list, conference name, year, and DOI once confirmed.
+                   Index number below is as provided; do not label it "EI" until verified. -->
+              <p class="entry__meta"><span data-zh="索引号：">Index number: </span>20263321294146</p>
+            </div>
           </li>
         </ol>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================== Projects ============================== -->
-    <section class="section container" id="projects" aria-labelledby="projects-h">
-      <h2 id="projects-h" data-zh="研究项目">Selected Research</h2>
-      <div class="section__body">
+      <!-- ============================== Projects ============================== -->
+      <section class="section reveal" id="projects" aria-labelledby="projects-h">
+        <h2 id="projects-h" data-zh="项目">Projects</h2>
         <div class="projects">
           <!--
-            To add a project, copy one <article class="project"> block below.
+            To add a project, copy one <article class="panel project"> block below.
             Optional parts: <figure class="project__media"> (image), and any <li> in .links.
             Delete the parts you do not have; nothing else needs to change.
             Add data-zh="…" (Chinese text) to every element that has English text.
           -->
-          <article class="project" id="proj-channel">
+          <article class="panel project" id="proj-channel">
             <!-- <figure class="project__media"><img src="assets/img/NAME.png" alt="DESCRIPTION" data-zh-alt="图片说明" loading="lazy" width="320" height="200"></figure> -->
-            <div class="project__body">
-              <h3 data-zh="受控局部–全局通道通信">Controlled Local–Global Channel Communication</h3>
-              <p data-zh="研究面向多变量长期时间序列预测的、通道之间受控的局部–全局通信。">
-                Investigates controlled local–global communication among channels for multivariate
-                long-term time-series forecasting.
-              </p>
-              <ul class="tags" aria-label="Topics" data-zh-aria-label="主题">
-                <li data-zh="多变量长期预测">Multivariate long-term forecasting</li>
-                <li data-zh="受控通道通信">Controlled channel communication</li>
-                <li data-zh="局部–全局交互">Local–global interaction</li>
-              </ul>
-              <ul class="links">
-                <li><a class="btn btn--sm" href="#pub-clgcc" data-zh="SCI 论文">SCI paper</a></li>
-                <li><a class="btn btn--sm" href="#patent-cn122823403a" data-zh="专利申请 CN122823403A">Patent application CN122823403A</a></li>
-                <!-- <li><a class="btn btn--sm" href="#" data-zh="代码">Code</a></li> -->
-                <!-- <li><a class="btn btn--sm" href="#" data-zh="项目主页">Project page</a></li> -->
-              </ul>
-            </div>
+            <h3 data-zh="受控局部–全局通道通信">Controlled Local–Global Channel Communication</h3>
+            <p data-zh="多变量长期预测中，让通道之间以受控的方式交换局部与全局信息。">Multivariate long-term forecasting, where channels exchange local and global information in a controlled way.</p>
+            <ul class="tags" aria-label="Topics" data-zh-aria-label="主题">
+              <li data-zh="多变量长期预测">Multivariate long-term forecasting</li>
+              <li data-zh="受控通道通信">Controlled channel communication</li>
+              <li data-zh="局部–全局交互">Local–global interaction</li>
+            </ul>
+            <ul class="links">
+              <li><a class="btn btn--sm" href="#pub-clgcc" data-zh="SCI 论文">SCI paper</a></li>
+              <li><a class="btn btn--sm" href="#patent-cn122823403a" data-zh="专利申请 CN122823403A">Patent application CN122823403A</a></li>
+              <!-- <li><a class="btn btn--sm" href="#" data-zh="代码">Code</a></li> -->
+              <!-- <li><a class="btn btn--sm" href="#" data-zh="项目主页">Project page</a></li> -->
+            </ul>
           </article>
 
-          <article class="project" id="proj-exogenous">
-            <div class="project__body">
-              <h3 data-zh="面向时间序列预测的可靠外生变量">Reliable Exogenous Variables for Time-Series Forecasting</h3>
-              <p data-zh="研究基于 Transformer 的预测模型对外生变量的依赖是否可靠，方法包括诊断式压力测试框架，以及面向长期预测的专家模型选择。">
-                Investigates how reliable exogenous variables are in Transformer-based forecasting, through a
-                diagnostic stress-test framework and expert model selection for long-term forecasting.
-              </p>
-              <ul class="tags" aria-label="Topics" data-zh-aria-label="主题">
-                <li data-zh="外生变量可靠性">Exogenous-variable reliability</li>
-                <li data-zh="基于 Transformer 的预测">Transformer-based forecasting</li>
-                <li data-zh="专家模型选择">Expert model selection</li>
-              </ul>
-              <ul class="links">
-                <li><a class="btn btn--sm" href="#pub-stress" data-zh="会议论文">Conference paper</a></li>
-                <li><a class="btn btn--sm" href="#patent-cn122779322a" data-zh="专利申请 CN122779322A">Patent application CN122779322A</a></li>
-              </ul>
-            </div>
+          <article class="panel project" id="proj-exogenous">
+            <h3 data-zh="面向时间序列预测的可靠外生变量">Reliable Exogenous Variables for Time-Series Forecasting</h3>
+            <p data-zh="用诊断式压力测试检验基于 Transformer 的预测模型对外生变量的依赖是否可靠，并为长期预测提供专家模型选择方法。">A diagnostic stress test for how far Transformer-based forecasters can rely on their exogenous variables, plus an expert-model selection method for long-term forecasting.</p>
+            <ul class="tags" aria-label="Topics" data-zh-aria-label="主题">
+              <li data-zh="外生变量可靠性">Exogenous-variable reliability</li>
+              <li data-zh="基于 Transformer 的预测">Transformer-based forecasting</li>
+              <li data-zh="专家模型选择">Expert model selection</li>
+            </ul>
+            <ul class="links">
+              <li><a class="btn btn--sm" href="#pub-stress" data-zh="会议论文">Conference paper</a></li>
+              <li><a class="btn btn--sm" href="#patent-cn122779322a" data-zh="专利申请 CN122779322A">Patent application CN122779322A</a></li>
+            </ul>
           </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================== Patents ============================== -->
-    <section class="section container" id="patents" aria-labelledby="patents-h">
-      <h2 id="patents-h" data-zh="专利申请">Patent Applications</h2>
-      <div class="section__body">
-        <p class="note" data-zh="以下为已公开的中国专利申请，并非已授权专利。">Published Chinese patent applications; not granted patents.</p>
-        <ol class="pubs">
-          <li class="pub" id="patent-cn122823403a">
-            <p class="pub__type" data-zh="已公开的专利申请">Published Patent Application</p>
-            <h3 class="pub__title pub__title--zh" lang="zh-CN">基于受控通道通信的配电网多测点负荷预测方法及装置、存储介质、计算机设备</h3>
-            <p class="pub__meta"><span data-zh="公开号：">Publication number: </span>CN122823403A</p>
-            <p class="pub__gloss en-only">Informal translation (not official): Method and apparatus, storage medium, and computer device for multi-measurement-point load forecasting in distribution networks based on controlled channel communication.</p>
+      <!-- ============================== Patents ============================== -->
+      <section class="section reveal" id="patents" aria-labelledby="patents-h">
+        <h2 id="patents-h" data-zh="专利">Patents</h2>
+        <p class="note" data-zh="两项都是已公开的中国专利申请，还不是授权专利。">Both are published Chinese patent applications, not granted patents.</p>
+        <ol class="entries">
+          <li class="entry" id="patent-cn122823403a">
+            <div class="entry__body">
+              <p class="entry__type" data-zh="已公开的专利申请">Published application</p>
+              <h3 class="entry__title entry__title--zh" lang="zh-CN">基于受控通道通信的配电网多测点负荷预测方法及装置、存储介质、计算机设备</h3>
+              <p class="entry__meta"><span data-zh="公开号：">Publication number: </span>CN122823403A</p>
+              <p class="entry__gloss en-only">Informal translation, not official: Method and apparatus, storage medium, and computer device for multi-measurement-point load forecasting in distribution networks based on controlled channel communication.</p>
+            </div>
           </li>
-          <li class="pub" id="patent-cn122779322a">
-            <p class="pub__type" data-zh="已公开的专利申请">Published Patent Application</p>
-            <h3 class="pub__title pub__title--zh" lang="zh-CN">面向外生变量长期时间序列预测的专家模型选择方法及装置</h3>
-            <p class="pub__meta"><span data-zh="公开号：">Publication number: </span>CN122779322A</p>
-            <p class="pub__gloss en-only">Informal translation (not official): Expert model selection method and apparatus for long-term time-series forecasting with exogenous variables.</p>
+          <li class="entry" id="patent-cn122779322a">
+            <div class="entry__body">
+              <p class="entry__type" data-zh="已公开的专利申请">Published application</p>
+              <h3 class="entry__title entry__title--zh" lang="zh-CN">面向外生变量长期时间序列预测的专家模型选择方法及装置</h3>
+              <p class="entry__meta"><span data-zh="公开号：">Publication number: </span>CN122779322A</p>
+              <p class="entry__gloss en-only">Informal translation, not official: Expert model selection method and apparatus for long-term time-series forecasting with exogenous variables.</p>
+            </div>
           </li>
         </ol>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================== Contact ============================== -->
-    <section class="section container" id="contact" aria-labelledby="contact-h">
-      <h2 id="contact-h" data-zh="联系方式">Contact</h2>
-      <div class="section__body">
+      <!-- ============================== Contact ============================== -->
+      <section class="section reveal" id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h" data-zh="联系方式">Contact</h2>
         <dl class="contact">
           <dt data-zh="邮箱">Email</dt>
           <dd><a href="mailto:songyuhao799@gmail.com">songyuhao799@gmail.com</a></dd>
           <dt data-zh="单位">Address</dt>
           <dd data-zh="东北大学<br>信息科学与工程学院">College of Information Science and Engineering,<br>Northeastern University, China</dd>
         </dl>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">
