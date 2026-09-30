@@ -2,8 +2,64 @@
   'use strict';
 
   var root = document.documentElement;
-  // Path to assets/ relative to the current page (the Chinese page lives in zh/).
-  var assets = document.body.getAttribute('data-assets') || 'assets/';
+
+  /* ---------- Language (English / Chinese, switched in place) ----------
+     English is the default text in the HTML. Elements with data-zh hold the Chinese
+     replacement for their content; data-zh-<attr> holds it for an attribute. */
+  var TRANSLATED_ATTRS = ['title', 'aria-label', 'alt', 'lang', 'content'];
+  var originals = new Map();
+  var lang = 'en';
+
+  var THEME_LABELS = {
+    en: { toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
+    zh: { toLight: '切换到浅色主题', toDark: '切换到深色主题' }
+  };
+
+  function storedLang() {
+    try {
+      var q = new URLSearchParams(window.location.search).get('lang');
+      if (q === 'zh' || q === 'en') return q;
+      var v = localStorage.getItem('lang');
+      if (v === 'zh' || v === 'en') return v;
+    } catch (e) { /* ignore */ }
+    return 'en';
+  }
+
+  function applyLang(next) {
+    lang = next;
+    root.setAttribute('lang', next === 'zh' ? 'zh-CN' : 'en');
+
+    var selector = '[data-zh]' + TRANSLATED_ATTRS.map(function (a) { return ',[data-zh-' + a + ']'; }).join('');
+    document.querySelectorAll(selector).forEach(function (el) {
+      var saved = originals.get(el);
+      if (!saved) {
+        saved = { html: el.innerHTML, attrs: {} };
+        TRANSLATED_ATTRS.forEach(function (a) {
+          if (el.hasAttribute('data-zh-' + a)) saved.attrs[a] = el.getAttribute(a);
+        });
+        originals.set(el, saved);
+      }
+      if (el.hasAttribute('data-zh')) {
+        el.innerHTML = next === 'zh' ? el.getAttribute('data-zh') : saved.html;
+      }
+      TRANSLATED_ATTRS.forEach(function (a) {
+        if (el.hasAttribute('data-zh-' + a)) {
+          el.setAttribute(a, next === 'zh' ? el.getAttribute('data-zh-' + a) : saved.attrs[a]);
+        }
+      });
+    });
+
+    applyTheme(currentTheme()); // theme-toggle label depends on the language
+  }
+
+  var langToggle = document.getElementById('lang-toggle');
+  if (langToggle) {
+    langToggle.addEventListener('click', function () {
+      var next = lang === 'zh' ? 'en' : 'zh';
+      applyLang(next);
+      try { localStorage.setItem('lang', next); } catch (e) { /* storage unavailable */ }
+    });
+  }
 
   /* ---------- Theme toggle ---------- */
   var toggle = document.getElementById('theme-toggle');
@@ -15,13 +71,15 @@
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
     if (toggle) {
-      var toLight = toggle.getAttribute('data-label-light') || 'Switch to light theme';
-      var toDark = toggle.getAttribute('data-label-dark') || 'Switch to dark theme';
-      toggle.setAttribute('aria-label', theme === 'dark' ? toLight : toDark);
+      var t = THEME_LABELS[lang];
+      toggle.setAttribute('aria-label', theme === 'dark' ? t.toLight : t.toDark);
     }
   }
 
   applyTheme(currentTheme());
+
+  var initialLang = storedLang();
+  if (initialLang !== 'en') applyLang(initialLang);
 
   if (toggle) {
     toggle.addEventListener('click', function () {
@@ -47,7 +105,7 @@
      (A 404 for a missing optional file may appear in the browser console.) */
   var cvItem = document.getElementById('cv-item');
   if (cvItem && window.fetch) {
-    fetch(assets + 'cv.pdf', { method: 'HEAD' })
+    fetch('assets/cv.pdf', { method: 'HEAD' })
       .then(function (res) {
         var type = res.headers.get('content-type') || '';
         if (res.ok && type.indexOf('pdf') !== -1) cvItem.hidden = false;
@@ -63,7 +121,7 @@
       photoImg.src = probe.src;
       photo.hidden = false;
     };
-    probe.src = assets + 'profile.jpg';
+    probe.src = 'assets/profile.jpg';
   }
 
   /* ---------- Highlight the current section in the nav ---------- */

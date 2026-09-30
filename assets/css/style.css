@@ -60,6 +60,8 @@ html:lang(zh-CN) .area p,
 html:lang(zh-CN) .pub__title,
 html:lang(zh-CN) .pub__gloss,
 html:lang(zh-CN) .project p { max-width: 38em; }
+html:not(:lang(zh-CN)) .zh-only,
+html:lang(zh-CN) .en-only { display: none; }
 html:lang(zh-CN) .hero__role { font-size: 1.15rem; }
 html:lang(zh-CN) .hero__interests .label,
 html:lang(zh-CN) .pub__type { letter-spacing: 0.04em; text-transform: none; }
@@ -178,10 +180,12 @@ a:hover { color: var(--accent-hover); }
   height: 36px;
   padding: 0 12px;
   color: var(--muted);
+  font-family: inherit;
   font-size: 0.875rem;
-  text-decoration: none;
+  background: transparent;
   border: 1px solid var(--border);
   border-radius: 8px;
+  cursor: pointer;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 .lang-switch:hover { color: var(--text); border-color: var(--muted); }
