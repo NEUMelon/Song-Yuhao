@@ -6,7 +6,7 @@ time-series forecasting.
 
 Live site (after GitHub Pages is enabled): <https://neumelon.github.io/Song-Yuhao/>
 
-Plain static site: **HTML + CSS + a little JavaScript**. No build step, no dependencies.
+Plain static site (fonts are self-hosted, so nothing loads from a third-party CDN): **HTML + CSS + a little JavaScript**. No build step, no dependencies.
 
 Bilingual: English by default; the **中文 / English** button in the top navigation switches the whole page in place
 (no reload). The choice is remembered, and `?lang=zh` / `?lang=en` in the URL forces a language.
@@ -28,6 +28,7 @@ assets/
   css/style.css         Styles, light/dark themes via CSS variables
   js/main.js            Language + theme toggles, nav highlight, optional CV/photo detection
   favicon.svg           Placeholder favicon ("SY")
+  fonts/                Self-hosted Newsreader (headings) and Inter (text), SIL OFL — see LICENSE.txt
   img/                  Put project images here
   cv.pdf                (you add) CV — button appears automatically
   profile.jpg           (you add) profile photo — appears automatically in the hero
